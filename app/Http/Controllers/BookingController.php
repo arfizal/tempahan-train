@@ -87,9 +87,10 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Booking $booking)
     {
-        //
+        //dd($booking);
+        return view('admin.booking_show', compact('booking'));
     }
 
     /**
@@ -116,13 +117,15 @@ class BookingController extends Controller
 
         if($request['action'] == 'approve'){
             $booking->status = 1;
+            Session()->flash('message', 'Booking has been succesfully approved!');
         } elseif($request['action'] == 'reject'){
             $booking->status = 2;
+            Session()->flash('message', 'Booking has been succesfully rejected!');
         }
 
         $booking->save();
 
-        return redirect()->route('admin.booking.index');
+        return redirect()->route('admin.booking.index', ['page' => $request['page'],]);
 
     }
 

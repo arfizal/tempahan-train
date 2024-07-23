@@ -15,6 +15,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @yield('topscript')
 </head>
 <body>
     <div id="app">
@@ -78,13 +80,28 @@
                 <div class="row">
                     <div class="col-md-2">
 
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary w-100 mb-2">Dashboard</a>
-                        <a href="{{ route('admin.booking.index') }}" class="btn btn-primary w-100 mb-2">Manage Booking</a>
-                        <a href="{{ route('admin.user.index') }}" class="btn btn-primary w-100 mb-2">Manage Users</a>
-                        <a href="{{ route('admin.room.index') }}" class="btn btn-primary w-100 mb-2">Manage Room</a>
-                        <a href="" class="btn btn-primary w-100 mb-2">Reports</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary w-100 mb-2">{{ __('Dashboard') }}</a>
+                        <a href="{{ route('admin.booking.index') }}" class="btn btn-primary w-100 mb-2">{{ __('Manage Booking') }}</a>
+                        <a href="{{ route('admin.user.index') }}" class="btn btn-primary w-100 mb-2">{{ __('Manage Users') }}</a>
+                        <a href="{{ route('admin.room.index') }}" class="btn btn-primary w-100 mb-2">{{ __('Manage Room') }}</a>
+                        <a href="" class="btn btn-primary w-100 mb-2">{{ __('Reports') }}</a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="btn btn-danger w-100 mb-2">Logout</a>
+                        document.getElementById('logout-form').submit();" class="btn btn-danger w-100 mb-2">{{ __('Logout') }}</a>
+
+                        <a href="{{ route('language') }}?lang=en">
+                            @if(app()->getLocale() == 'en')
+                                <b>English</b>
+                            @else
+                                English
+                            @endif
+                        </a> | 
+                        <a href="{{ route('language') }}?lang=ms">
+                            @if(app()->getLocale() == 'ms')
+                                <b>Bahasa Melayu</b>
+                            @else
+                                Bahasa Melayu
+                            @endif
+                        </a>
 
                     </div>
                     <div class="col-md-10">

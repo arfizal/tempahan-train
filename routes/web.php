@@ -37,6 +37,8 @@ Route::get('/firstlogin', function(){
     }
 });
 
+Route::get('/language', [App\Http\Controllers\LanguageController::class, 'changeLanguage'])->name('language');
+
 Route::group([
     'prefix' => 'admin', 
     'as' => 'admin.',
@@ -48,6 +50,7 @@ Route::group([
     Route::resource('room', 'App\Http\Controllers\RoomController');
     Route::get('/booking/pdf', [App\Http\Controllers\BookingController::class, 'pdf'])->name('booking.pdf');
     Route::get('/booking/excel', [App\Http\Controllers\BookingController::class, 'excel'])->name('booking.excel');
+    Route::get('/booking/show', [App\Http\Controllers\BookingController::class, 'show'])->name('booking.show');
     Route::resource('booking', 'App\Http\Controllers\BookingController');
 
 });
